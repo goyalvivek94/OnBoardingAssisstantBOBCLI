@@ -87,8 +87,26 @@ jobs:
           (Get-Content index.html).Replace('/static/', 'static/') | Set-Content index.html
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: . # Deploy the root (including index.html and static/)
-          branch: gh-pages # Target branch for GitHub Pages
-          clean: true
+        shell: powershell
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Create clean deployment directory
+          $deployDir = "deploy_temp"
+          if (Test-Path $deployDir) { Remove-Item -Recurse -Force $deployDir }
+          New-Item -ItemType Directory -Path $deployDir -Force | Out-Null
+          
+          # Copy only frontend web files
+          Copy-Item -Path "index.html" -Destination "$deployDir/index.html" -Force
+          Copy-Item -Path "static" -Destination "$deployDir/static" -Recurse -Force
+          
+          # Initialize deployment repository
+          cd $deployDir
+          git init
+          git checkout -b gh-pages
+          git add .
+          git commit -m "Deploy to GitHub Pages via GitHub Actions"
+          
+          # Force push to the gh-pages branch using the automatically provided GITHUB_TOKEN
+          git push --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
