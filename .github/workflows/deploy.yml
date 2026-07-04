@@ -15,20 +15,18 @@ permissions:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
       - name: Install IBM BOB CLI
+        shell: powershell
         run: |
-          npm install -g @ibm/bob
-          # Pre-accept license for headless environments if needed
+          # Execute the PowerShell installation script
+          powershell -ep Bypass 'irm -Uri "https://bob.ibm.com/download/bobshell.ps1" | iex'
+          
+          # Force accept the license for the headless session
           bob --accept-license || true
 
       - name: Set up Python
@@ -68,14 +66,12 @@ jobs:
           "
 
       - name: Prepare Static Website Files
-        # GitHub Pages serves static files. We copy index.html from templates
-        # to the root directory and update references.
+        # On Windows runner, we use PowerShell to copy the index page
+        # and replace absolute asset references with relative ones.
+        shell: powershell
         run: |
-          cp templates/index.html index.html
-          # Replace relative stylesheet link if needed (templates/index.html uses /static/)
-          # In static deployment, we keep the directory structure or flatten it.
-          # Here we make static paths relative: e.g. /static/app.css -> static/app.css
-          sed -i 's/\/static\//static\//g' index.html
+          Copy-Item -Path "templates/index.html" -Destination "index.html" -Force
+          (Get-Content index.html).Replace('/static/', 'static/') | Set-Content index.html
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
