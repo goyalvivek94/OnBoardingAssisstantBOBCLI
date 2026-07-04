@@ -1,0 +1,83 @@
+name: Generate Quiz and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/**' # Trigger when policy documents change
+      - 'templates/**'
+      - 'static/**'
+  workflow_dispatch: # Allow manual triggers
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install IBM BOB CLI
+        run: |
+          npm install -g @ibm/bob
+          # Pre-accept license for headless environments if needed
+          bob --accept-license || true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install langchain langchain-text-splitters python-docx
+
+      - name: Generate Static Quiz Data
+        # We run the backend offline to pre-generate the quiz questions
+        # and output them as a static JSON file in the static directory.
+        run: |
+          python -c "
+          import onboarding_backend
+          import json
+          import os
+          
+          # Generate a set of questions for each difficulty
+          for diff in ['easy', 'medium', 'hard']:
+              try:
+                  print(f'Generating {diff} difficulty quiz...')
+                  quiz_data = onboarding_backend.generate_quiz_questions(difficulty=diff)
+                  # Save questions to static folder
+                  os.makedirs('static', exist_ok=True)
+                  with open(f'static/quiz_data_{diff}.json', 'w') as f:
+                      json.dump(quiz_data['questions'], f, indent=2)
+                  print(f'Successfully pre-generated static/quiz_data_{diff}.json')
+              except Exception as e:
+                  print(f'Error generating {diff}: {e}')
+                  exit(1)
+          "
+
+      - name: Prepare Static Website Files
+        # GitHub Pages serves static files. We copy index.html from templates
+        # to the root directory and update references.
+        run: |
+          cp templates/index.html index.html
+          # Replace relative stylesheet link if needed (templates/index.html uses /static/)
+          # In static deployment, we keep the directory structure or flatten it.
+          # Here we make static paths relative: e.g. /static/app.css -> static/app.css
+          sed -i 's/\/static\//static\//g' index.html
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: . # Deploy the root (including index.html and static/)
+          branch: gh-pages # Target branch for GitHub Pages
+          clean: true
