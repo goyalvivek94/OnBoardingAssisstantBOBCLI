@@ -44,6 +44,8 @@ jobs:
       - name: Generate Static Quiz Data
         # We run the backend offline to pre-generate the quiz questions
         # and output them as a static JSON file in the static directory.
+        env:
+          BOB_API_KEY: ${{ secrets.IBM_BOB_KEY }}
         run: |
           python -c "
           import onboarding_backend
