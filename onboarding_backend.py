@@ -7,6 +7,17 @@ import random
 import sys
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
+# Load environment variables from .env if present
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
+# Map BOB_API_KEY to BOBSHELL_API_KEY if BOBSHELL_API_KEY is not already defined
+if "BOB_API_KEY" in os.environ and "BOBSHELL_API_KEY" not in os.environ:
+    os.environ["BOBSHELL_API_KEY"] = os.environ["BOB_API_KEY"]
+
 # ── Config ────────────────────────────────────────────────────────────────────
 DATA_DIR = "./data"
 CHUNK_SIZE = 1000
