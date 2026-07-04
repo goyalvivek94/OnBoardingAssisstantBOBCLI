@@ -30,12 +30,6 @@ jobs:
           
           # Add BOB to path for subsequent steps
           "$env:USERPROFILE\.bob\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-          
-          # Add to current path for this step
-          $env:Path += ";$env:USERPROFILE\.bob\bin"
-          
-          # Force accept the license for the headless session
-          & bob --accept-license
 
       - name: Set up Python
         uses: actions/setup-python@v5

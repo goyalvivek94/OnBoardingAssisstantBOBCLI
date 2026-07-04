@@ -158,6 +158,7 @@ def call_bob(prompt: str) -> tuple[str, str, str]:
     
     cmd_args = [
         str(bob_cmd),
+        "--accept-license",
         "--hide-intermediary-output",
         "--output-format", "json",
         "--chat-mode", "advanced",
