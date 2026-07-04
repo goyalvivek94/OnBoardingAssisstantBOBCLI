@@ -51,6 +51,10 @@ jobs:
           import onboarding_backend
           import json
           import os
+          import traceback
+          import shutil
+          
+          print('BOB CLI on PATH:', shutil.which('bob.cmd') or shutil.which('bob') or shutil.which('bob.ps1') or shutil.which('bob.exe'))
           
           # Generate a set of questions for each difficulty
           for diff in ['easy', 'medium', 'hard']:
@@ -64,6 +68,13 @@ jobs:
                   print(f'Successfully pre-generated static/quiz_data_{diff}.json')
               except Exception as e:
                   print(f'Error generating {diff}: {e}')
+                  traceback.print_exc()
+                  # Check directory contents
+                  bob_dir = os.path.expanduser('~/.bob/bin')
+                  if os.path.exists(bob_dir):
+                      print('Contents of ~/.bob/bin:', os.listdir(bob_dir))
+                  else:
+                      print('~/.bob/bin does not exist!')
                   exit(1)
           "
 
