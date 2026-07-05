@@ -172,7 +172,7 @@ def call_bob(prompt: str) -> tuple[str, str, str]:
         "--accept-license",
         "--hide-intermediary-output",
         "--output-format", "json",
-        "--chat-mode", "advanced",
+        "--chat-mode", "ask",
     ]
     
     # Formulate command string for representation (using standard stdin redirection syntax)

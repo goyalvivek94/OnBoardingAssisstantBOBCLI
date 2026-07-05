@@ -58,7 +58,7 @@ async def generate_quiz(req: QuizRequest):
             status_code=500,
             content={
                 "error": error_msg,
-                "bob_command": getattr(e, "bob_command", f"bob --hide-intermediary-output --output-format json --chat-mode advanced ..."),
+                "bob_command": getattr(e, "bob_command", f"bob --hide-intermediary-output --output-format json --chat-mode ask ..."),
                 "bob_logs": getattr(e, "bob_logs", f"Execution error:\n{error_msg}")
             }
         )
