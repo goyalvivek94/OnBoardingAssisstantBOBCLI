@@ -1,0 +1,122 @@
+[
+  {
+    "question": "Who must provide written approval before onboarding a Politically Exposed Person (PEP)?",
+    "options": [
+      "Senior Management or Chief Compliance Officer",
+      "Any compliance analyst",
+      "The account manager",
+      "The legal department"
+    ],
+    "answer_index": 0,
+    "explanation": "PEP onboarding requires explicit written sign-off from Senior Management or CCO.",
+    "source_doc": "Enhanced_Due_Diligence_Manual.md"
+  },
+  {
+    "question": "What action is required when onboarding a client from a FATF Blacklist (High-Risk) jurisdiction?",
+    "options": [
+      "Apply standard CDD procedures",
+      "Apply Enhanced Due Diligence and strict countermeasures",
+      "Reject the client immediately",
+      "Request additional references only"
+    ],
+    "answer_index": 1,
+    "explanation": "Blacklist jurisdictions require strict countermeasures and Enhanced Due Diligence application.",
+    "source_doc": "FATF_High_Risk_Jurisdictions_List.md"
+  },
+  {
+    "question": "Which delivery channel is classified as HIGH RISK in the Institutional Risk Assessment Matrix?",
+    "options": [
+      "In-person branch onboarding",
+      "Non-face-to-face onboarding",
+      "Telephone banking setup",
+      "Mail-in applications with notarization"
+    ],
+    "answer_index": 1,
+    "explanation": "Non-face-to-face onboarding is explicitly classified as high-risk delivery channel.",
+    "source_doc": "Institutional_Risk_Assessment_Matrix.md"
+  },
+  {
+    "question": "What must an analyst do when a sanctions screening alert is a TRUE MATCH?",
+    "options": [
+      "Document and suppress the alert",
+      "Block onboarding immediately and report to authorities",
+      "Request additional client information",
+      "Escalate to the account manager"
+    ],
+    "answer_index": 1,
+    "explanation": "True matches require immediate onboarding block and authority reporting within deadlines.",
+    "source_doc": "Sanctions_and_PEP_Screening_Protocol.md"
+  },
+  {
+    "question": "What is the ownership threshold for identifying an Ultimate Beneficial Owner (UBO)?",
+    "options": [
+      "10% or more of shares",
+      "25% or more of shares or voting rights",
+      "50% or more of shares",
+      "Any ownership stake"
+    ],
+    "answer_index": 1,
+    "explanation": "UBO identification threshold is 25% or more ownership or voting rights.",
+    "source_doc": "Standard_CDD_Policy.md"
+  },
+  {
+    "question": "What action is required when a client is reluctant to provide UBO identities during onboarding?",
+    "options": [
+      "Proceed with limited information",
+      "Immediate Escalation Report",
+      "Request information again later",
+      "Accept verbal confirmation only"
+    ],
+    "answer_index": 1,
+    "explanation": "Reluctance to provide information requires immediate Escalation Report per red flags.",
+    "source_doc": "Suspicious_Activity_Red_Flags_Onboarding.md"
+  },
+  {
+    "question": "Under UK MLR 2017, when must customer identity verification occur?",
+    "options": [
+      "Within 30 days after account opening",
+      "Before establishing the business relationship",
+      "After the first transaction",
+      "Within 90 days of onboarding"
+    ],
+    "answer_index": 1,
+    "explanation": "Verification must occur before establishing relationship or executing occasional transaction.",
+    "source_doc": "UK_Money_Laundering_Regulations_2017_Summary.md"
+  },
+  {
+    "question": "Under USA PATRIOT Act Section 326, which address type is PROHIBITED for CIP compliance?",
+    "options": [
+      "Residential street address",
+      "Principal place of business address",
+      "P.O. Box",
+      "Apartment address"
+    ],
+    "answer_index": 2,
+    "explanation": "P.O. Boxes are strictly prohibited; physical street addresses are mandatory.",
+    "source_doc": "US_USA_PATRIOT_Act_Section_326_CIP.md"
+  },
+  {
+    "question": "What happens to SWIFT payments flagged for missing originator or beneficiary information?",
+    "options": [
+      "Automatically processed",
+      "Held for manual compliance review",
+      "Rejected immediately",
+      "Forwarded to the client"
+    ],
+    "answer_index": 1,
+    "explanation": "Payments with missing fields are systematically held for manual compliance review.",
+    "source_doc": "Wolfsberg_CBDDQ_v1.4.md"
+  },
+  {
+    "question": "What is the difference between Source of Wealth (SoW) and Source of Funds (SoF)?",
+    "options": [
+      "SoW is total net worth origin; SoF is specific transaction funds origin",
+      "They are identical terms",
+      "SoW is for individuals; SoF is for corporations",
+      "SoW is optional; SoF is mandatory"
+    ],
+    "answer_index": 0,
+    "explanation": "SoW traces entire accumulated wealth; SoF traces specific transaction funds origin.",
+    "source_doc": "Enhanced_Due_Diligence_Manual.md"
+  }
+]

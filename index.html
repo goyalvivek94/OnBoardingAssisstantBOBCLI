@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBM BOB Compliance Onboarding Assistant</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="static/app.css">
+    <!-- FontAwesome for premium icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-area">
+                <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                <div class="logo-text">
+                    <h1>IBM Onboarding & Interview Portal</h1>
+                    <span class="subtext">Compliance & Training System</span>
+                </div>
+            </div>
+            <div class="bob-badge">
+                <i class="fa-solid fa-robot"></i>
+                <span>Powered by IBM BOB CLI</span>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="app-main">
+            
+            <!-- STATE 1: SETUP SCREEN -->
+            <section id="setup-screen" class="state-panel active">
+                <div class="panel-hero">
+                    <h2>Welcome to the Onboarding Portal</h2>
+                    <p>Select your difficulty level and generate a dynamic 10-question evaluation quiz pulled from the entire compliance document corpus. A score of 60% (6/10) is required to pass.</p>
+                </div>
+
+                <div class="setup-grid">
+                    <!-- Column 1: Document Corpus -->
+                    <div class="setup-card doc-corpus-card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-file-invoice icon-blue"></i>
+                            <h3>Active Document Corpus</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="section-desc">We found the following documents indexed in the system. Questions will be dynamically generated across these sources:</p>
+                            <div id="documents-list" class="documents-list-container">
+                                <div class="loading-inline">
+                                    <i class="fa-solid fa-circle-notch fa-spin"></i>
+                                    <span>Scanning data directory...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Quiz Configuration -->
+                    <div class="setup-card config-card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-sliders icon-purple"></i>
+                            <h3>Quiz Configuration</h3>
+                        </div>
+                        <div class="card-body">
+                            <label class="input-label">Select Question Difficulty</label>
+                            <div class="difficulty-options">
+                                <!-- Easy -->
+                                <div class="difficulty-box easy" data-level="easy" onclick="selectDifficulty('easy')">
+                                    <div class="diff-header">
+                                        <span class="diff-title">Easy</span>
+                                        <i class="fa-solid fa-circle-check check-icon"></i>
+                                    </div>
+                                    <p class="diff-desc">Straightforward fact retrieval and definitions directly from the excerpts.</p>
+                                </div>
+                                <!-- Medium -->
+                                <div class="difficulty-box medium active" data-level="medium" onclick="selectDifficulty('medium')">
+                                    <div class="diff-header">
+                                        <span class="diff-title">Medium</span>
+                                        <i class="fa-solid fa-circle-check check-icon"></i>
+                                    </div>
+                                    <p class="diff-desc">Balanced questions requiring application of onboarding rules and policies.</p>
+                                </div>
+                                <!-- Hard -->
+                                <div class="difficulty-box hard" data-level="hard" onclick="selectDifficulty('hard')">
+                                    <div class="diff-header">
+                                        <span class="diff-title">Hard</span>
+                                        <i class="fa-solid fa-circle-check check-icon"></i>
+                                    </div>
+                                    <p class="diff-desc">Scenario-based assessments testing edge cases and policy interpretation.</p>
+                                </div>
+                            </div>
+
+                            <button id="btn-start-generation" class="btn btn-primary btn-block" onclick="startQuizGeneration()">
+                                <i class="fa-solid fa-gears btn-icon"></i> Generate Evaluation Quiz
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STATE 2: LOADING SCREEN -->
+            <section id="loading-screen" class="state-panel">
+                <div class="loading-container">
+                    <div class="glass-loader">
+                        <div class="loader-waves"></div>
+                        <i class="fa-solid fa-robot loader-icon pulse"></i>
+                    </div>
+                    <h2>Invoking IBM BOB CLI</h2>
+                    <p id="loading-status">Scanning document corpus and extracting text excerpts...</p>
+                    
+                    <!-- Simulated Terminal Window -->
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="terminal-title">IBM BOB Execution Console</span>
+                            <span class="terminal-action">bob.cmd</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="terminal-line"><span class="prompt">$</span> <span id="terminal-command">bob --hide-intermediary-output --output-format json --chat-mode ask "Generate onboarding quiz..."</span></div>
+                            <pre id="terminal-output">Initializing model session...</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="loading-tip">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>This process takes around 10-15 seconds as BOB compiles the text excerpts, validates guidelines, and generates structured MCQs.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STATE 3: QUIZ PLAYER SCREEN -->
+            <section id="quiz-screen" class="state-panel">
+                <!-- Progress Header -->
+                <div class="quiz-progress-container">
+                    <div class="progress-details">
+                        <span id="quiz-progress-text">Question 1 of 10</span>
+                        <span id="quiz-timer">Difficulty: Medium</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div id="quiz-progress-fill" class="progress-bar-fill" style="width: 10%;"></div>
+                    </div>
+                </div>
+
+                <div class="quiz-layout">
+                    <!-- Active Question Card -->
+                    <div class="quiz-question-card">
+                        <div class="question-header">
+                            <span class="question-number-badge">Q<span id="display-q-number">1</span></span>
+                            <span id="display-q-source" class="source-document-tag">Source: Document_Name.md</span>
+                        </div>
+                        <h2 id="display-q-text" class="question-title">What is the primary requirement for identifying corporate structures in due diligence?</h2>
+                        
+                        <div id="options-container" class="options-grid">
+                            <!-- Option cards will be injected dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Bottom Nav -->
+                    <div class="quiz-navigation">
+                        <button id="btn-prev-question" class="btn btn-secondary" onclick="prevQuestion()" disabled>
+                            <i class="fa-solid fa-arrow-left"></i> Previous
+                        </button>
+                        <button id="btn-next-question" class="btn btn-primary" onclick="nextQuestion()" disabled>
+                            Next <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STATE 4: RESULTS SCREEN -->
+            <section id="results-screen" class="state-panel">
+                <div class="results-layout">
+                    <!-- Left: Score Card -->
+                    <div class="score-card">
+                        <div class="score-radial">
+                            <svg class="score-svg" viewBox="0 0 120 120">
+                                <circle class="score-circle-bg" cx="60" cy="60" r="50"></circle>
+                                <circle id="score-circle-fill" class="score-circle-fill" cx="60" cy="60" r="50" stroke-dasharray="314.16" stroke-dashoffset="314.16"></circle>
+                            </svg>
+                            <div class="score-text">
+                                <span id="result-score-percent" class="percent">0%</span>
+                                <span id="result-score-fraction" class="fraction">0 / 10 Correct</span>
+                            </div>
+                        </div>
+
+                        <div id="result-badge" class="result-badge pass">
+                            <i id="result-badge-icon" class="fa-solid fa-circle-check"></i>
+                            <span id="result-badge-text">PASSED</span>
+                        </div>
+                        
+                        <p class="score-summary-desc">You need at least a 60% passing grade (6/10) to pass the compliance verification.</p>
+
+                        <div class="score-actions">
+                            <button class="btn btn-primary btn-block" onclick="retryQuiz()">
+                                <i class="fa-solid fa-rotate-right"></i> Retake New Quiz
+                            </button>
+                            <button class="btn btn-secondary btn-block" onclick="goToDashboard()">
+                                <i class="fa-solid fa-sliders"></i> Change Configuration
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Detailed Review -->
+                    <div class="review-card">
+                        <div class="review-header">
+                            <i class="fa-solid fa-list-check"></i>
+                            <h3>Detailed Evaluation Review</h3>
+                        </div>
+                        <div class="review-body">
+                            <p class="section-desc">Review your answers below to verify compliance guidelines and understand the correct procedures.</p>
+                            <div id="review-list" class="review-list-container">
+                                <!-- Review items will be injected here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Compliance Assisting Platform &copy; 2026. Built with Python, FastAPI, and IBM BOB CLI.</p>
+        </footer>
+    </div>
+
+    <!-- Script imports -->
+    <script src="static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+[
+  {
+    "question": "A client operates a cryptocurrency exchange and has political connections in a FATF-monitored jurisdiction. During onboarding, they provide bank statements from the last 2 years showing consistent deposits. What additional documentation is mandatory under EDD requirements for Source of Wealth verification?",
+    "options": [
+      "Documentation tracing wealth origin back 5-10 years proving legitimacy of accumulated net worth",
+      "Only the provided 2-year bank statements are sufficient for SoW verification",
+      "A single notarized letter from their accountant confirming wealth legitimacy",
+      "Source of Wealth documentation is optional if Source of Funds is clearly documented"
+    ],
+    "answer_index": 0,
+    "explanation": "EDD requires SoW documentation tracing back 5-10 years to prove legitimacy.",
+    "source_doc": "Enhanced_Due_Diligence_Manual.md"
+  },
+  {
+    "question": "Your institution is onboarding a corporate client headquartered in a FATF Greylist jurisdiction that is actively working to address strategic AML deficiencies. The client has no other risk factors. What is the minimum required action during onboarding?",
+    "options": [
+      "Reject the application immediately due to geographic risk",
+      "Apply enhanced monitoring tailored to FATF-identified deficiencies and refresh CDD data annually",
+      "Proceed with standard CDD as Greylist countries require no special measures",
+      "Prohibit establishment of any financial relationship and apply strict countermeasures"
+    ],
+    "answer_index": 1,
+    "explanation": "Greylist jurisdictions require enhanced monitoring and annual CDD refresh per FATF protocol.",
+    "source_doc": "FATF_High_Risk_Jurisdictions_List.md"
+  },
+  {
+    "question": "An institutional client applies for private banking services through a digital-only onboarding process with no face-to-face interaction. The client is based in a FATF-compliant member state with robust regulations. Under the Institutional Risk Assessment Matrix, what is the correct initial risk classification?",
+    "options": [
+      "Low Risk due to geographic location in FATF-compliant jurisdiction",
+      "Medium Risk requiring standard enhanced monitoring procedures",
+      "High Risk due to combination of product type and delivery channel factors",
+      "No risk classification needed as digital onboarding is now standard practice"
+    ],
+    "answer_index": 2,
+    "explanation": "Private banking and non-face-to-face onboarding both trigger High Risk classification.",
+    "source_doc": "Institutional_Risk_Assessment_Matrix.md"
+  },
+  {
+    "question": "During sanctions screening, a potential match is identified between a proposed client's authorized signer and an individual on the OFAC list. The names are similar but not identical. When must this screening be completed to comply with the protocol?",
+    "options": [
+      "Within 48 hours after account activation to allow business continuity",
+      "Prior to activation of any account functions for the client",
+      "After the first transaction is processed to confirm actual risk",
+      "During the annual CDD refresh cycle as part of ongoing monitoring"
+    ],
+    "answer_index": 1,
+    "explanation": "Screening must occur prior to activation of any account functions per protocol.",
+    "source_doc": "Sanctions_and_PEP_Screening_Protocol.md"
+  },
+  {
+    "question": "A corporate client's ownership structure shows: Individual A owns 24% directly, Individual B owns 15% directly, and Individual A's spouse owns 12% through a trust. Who must be identified and verified as UBOs under the Standard CDD Policy?",
+    "options": [
+      "Only Individual A as they hold the largest single ownership stake",
+      "Individual A only, as they meet the 25% threshold through direct ownership",
+      "Individual A and their spouse, as combined family ownership exceeds 25%",
+      "No UBO identification required as no single individual reaches 25% threshold"
+    ],
+    "answer_index": 2,
+    "explanation": "Combined direct and indirect ownership through family members determines UBO threshold compliance.",
+    "source_doc": "Standard_CDD_Policy.md"
+  },
+  {
+    "question": "During onboarding, a client provides complete corporate documentation but becomes defensive when asked to disclose the identities of ultimate beneficial owners, stating 'this information is confidential and unnecessary.' What is the mandatory immediate action?",
+    "options": [
+      "Proceed with onboarding using publicly available corporate registry data only",
+      "File an Escalation Report immediately due to reluctance to provide information",
+      "Request the information again in writing and wait 30 days for response",
+      "Accept the refusal if all other documentation is complete and verified"
+    ],
+    "answer_index": 1,
+    "explanation": "Reluctance to disclose UBO identities requires immediate Escalation Report per red flags.",
+    "source_doc": "Suspicious_Activity_Red_Flags_Onboarding.md"
+  },
+  {
+    "question": "An analyst verifies a UK corporate client's identity using only the Certificate of Incorporation and utility bills provided directly by the client's representative. Does this approach comply with MLR 2017 verification standards?",
+    "options": [
+      "Yes, as both documents are official and sufficient for verification",
+      "No, verification cannot rely solely on client-provided documents without independent cross-reference",
+      "Yes, if the utility bills are less than 3 months old",
+      "No, but only because utility bills are never acceptable verification documents"
+    ],
+    "answer_index": 1,
+    "explanation": "MLR 2017 requires independent electronic verification or registry cross-reference, not client-provided documents.",
+    "source_doc": "UK_Money_Laundering_Regulations_2017_Summary.md"
+  },
+  {
+    "question": "A U.S. individual applies to open an account and provides: full legal name, date of birth, a P.O. Box address, and Social Security Number. The institution verifies identity after account opening but before granting transactional access. What is the compliance violation?",
+    "options": [
+      "Verification timing is incorrect; it must occur before account opening",
+      "The P.O. Box address violates CIP requirements; physical street address is mandatory",
+      "Social Security Number alone is insufficient; passport number also required",
+      "No violation exists; all four mandatory CIP elements were collected"
+    ],
+    "answer_index": 1,
+    "explanation": "USA PATRIOT Act Section 326 strictly prohibits P.O. Boxes; physical street address required.",
+    "source_doc": "US_USA_PATRIOT_Act_Section_326_CIP.md"
+  },
+  {
+    "question": "A respondent bank in the Wolfsberg CBDDQ declares it provides correspondent banking services to 15 downstream financial institutions. It has implemented transaction monitoring but has not established procedures to identify if nested accounts are used by unauthorized MSBs. What is the compliance gap?",
+    "options": [
+      "No gap exists as transaction monitoring alone satisfies nesting risk requirements",
+      "Procedures must be in place to ensure nested accounts are not utilized by unauthorized MSBs",
+      "The number of downstream relationships exceeds the maximum allowed threshold of 10",
+      "Correspondent banking services to downstream institutions are categorically prohibited"
+    ],
+    "answer_index": 1,
+    "explanation": "CBDDQ requires specific procedures to identify and prevent unauthorized MSB nesting activity.",
+    "source_doc": "Wolfsberg_CBDDQ_v1.4.md"
+  },
+  {
+    "question": "A proposed client is the Finance Minister of a FATF-compliant country with no other risk factors. The onboarding analyst completes Enhanced Due Diligence and submits the application for standard approval workflow. What critical compliance failure occurred?",
+    "options": [
+      "EDD should not have been applied to a client from a FATF-compliant jurisdiction",
+      "PEP onboarding requires explicit written sign-off from Senior Management or CCO, not standard approval",
+      "Finance Ministers are exempt from PEP classification if from compliant jurisdictions",
+      "No failure occurred; EDD and standard approval are correct for this client"
+    ],
+    "answer_index": 1,
+    "explanation": "PEPs require explicit written Senior Management or CCO approval, not standard workflow.",
+    "source_doc": "Enhanced_Due_Diligence_Manual.md"
+  }
+]

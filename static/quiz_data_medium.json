@@ -1,0 +1,122 @@
+[
+  {
+    "question": "A client is identified as a Politically Exposed Person (PEP). What approval is required before onboarding can proceed?",
+    "options": [
+      "Explicit, written sign-off from Senior Management or the Chief Compliance Officer",
+      "Verbal approval from the relationship manager",
+      "Automated system approval based on risk score",
+      "Standard approval from the onboarding team lead"
+    ],
+    "answer_index": 0,
+    "explanation": "PEP onboarding requires explicit written sign-off from Senior Management or CCO.",
+    "source_doc": "Enhanced_Due_Diligence_Manual.md"
+  },
+  {
+    "question": "A prospective client is domiciled in a FATF Blacklist jurisdiction. Which action must the institution take?",
+    "options": [
+      "Apply standard CDD procedures with annual reviews",
+      "Apply strict countermeasures and Enhanced Due Diligence, including prohibiting branches in that country",
+      "Decline the client immediately without further assessment",
+      "Apply enhanced monitoring with quarterly transaction reviews"
+    ],
+    "answer_index": 1,
+    "explanation": "Blacklist jurisdictions require strict countermeasures, EDD, and prohibiting branches or subsidiaries.",
+    "source_doc": "FATF_High_Risk_Jurisdictions_List.md"
+  },
+  {
+    "question": "During risk assessment, a client relationship involves non-face-to-face onboarding via a third-party intermediary. How is the Delivery Channel Risk classified?",
+    "options": [
+      "Low Risk",
+      "Medium Risk",
+      "High Risk",
+      "Negligible Risk"
+    ],
+    "answer_index": 2,
+    "explanation": "Non-face-to-face onboarding via third-party intermediaries is classified as High Risk.",
+    "source_doc": "Institutional_Risk_Assessment_Matrix.md"
+  },
+  {
+    "question": "When must all clients, authorized signers, and UBOs be screened against international sanctions lists?",
+    "options": [
+      "Within 30 days after account opening",
+      "Prior to the activation of any account functions",
+      "During the annual review cycle",
+      "After the first transaction is processed"
+    ],
+    "answer_index": 1,
+    "explanation": "Screening must occur prior to activation of any account functions.",
+    "source_doc": "Sanctions_and_PEP_Screening_Protocol.md"
+  },
+  {
+    "question": "What is the ownership threshold for identifying an Ultimate Beneficial Owner (UBO) of a legal entity?",
+    "options": [
+      "10% or more of shares or voting rights",
+      "25% or more of shares or voting rights",
+      "50% or more of shares or voting rights",
+      "Any ownership stake regardless of percentage"
+    ],
+    "answer_index": 1,
+    "explanation": "UBO threshold is 25% or more ownership of shares or voting rights.",
+    "source_doc": "Standard_CDD_Policy.md"
+  },
+  {
+    "question": "A client is reluctant to disclose UBO identities and source of wealth during onboarding. What action is required?",
+    "options": [
+      "Proceed with onboarding but flag for future monitoring",
+      "Request the information again after 30 days",
+      "Immediate Escalation Report must be filed",
+      "Accept alternative documentation instead"
+    ],
+    "answer_index": 2,
+    "explanation": "Reluctance to provide UBO or wealth information requires immediate Escalation Report.",
+    "source_doc": "Suspicious_Activity_Red_Flags_Onboarding.md"
+  },
+  {
+    "question": "Under UK MLR 2017, can identity verification rely solely on client-provided documents?",
+    "options": [
+      "Yes, if the documents are notarized",
+      "Yes, if the documents are government-issued",
+      "No, analysts must cross-reference using independent electronic verification platforms or registries",
+      "Yes, but only for low-risk clients"
+    ],
+    "answer_index": 2,
+    "explanation": "Verification cannot rely solely on client documents; independent sources are required.",
+    "source_doc": "UK_Money_Laundering_Regulations_2017_Summary.md"
+  },
+  {
+    "question": "Under USA PATRIOT Act Section 326, which type of address is strictly prohibited for account opening?",
+    "options": [
+      "Residential street address",
+      "Principal place of business address",
+      "P.O. Box address",
+      "Temporary mailing address"
+    ],
+    "answer_index": 2,
+    "explanation": "P.O. Boxes are strictly prohibited; physical street addresses are required.",
+    "source_doc": "US_USA_PATRIOT_Act_Section_326_CIP.md"
+  },
+  {
+    "question": "What happens to SWIFT payment messages that are flagged for missing originator or beneficiary information fields?",
+    "options": [
+      "They are automatically rejected and returned to sender",
+      "They are processed with a delayed settlement",
+      "They must be systematically held for manual compliance review before execution",
+      "They are processed normally with a compliance notification"
+    ],
+    "answer_index": 2,
+    "explanation": "Missing fields require systematic hold for manual compliance review before execution.",
+    "source_doc": "Wolfsberg_CBDDQ_v1.4.md"
+  },
+  {
+    "question": "What is the key difference between Source of Wealth (SoW) and Source of Funds (SoF)?",
+    "options": [
+      "SoW refers to total accumulated net worth; SoF refers to specific funds for this transaction",
+      "SoW and SoF are identical terms used interchangeably",
+      "SoW applies only to individuals; SoF applies only to corporations",
+      "SoW requires 2-year documentation; SoF requires 10-year documentation"
+    ],
+    "answer_index": 0,
+    "explanation": "SoW is total net worth origin; SoF is specific transaction funds origin.",
+    "source_doc": "Enhanced_Due_Diligence_Manual.md"
+  }
+]
